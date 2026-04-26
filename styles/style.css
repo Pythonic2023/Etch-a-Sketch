@@ -7,3 +7,7 @@ div {
     outline: 1px solid red;
     flex: 0 0 50%;
 }
+
+//div:hover {
+//    background-color: orange;
+//}

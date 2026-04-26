@@ -21,13 +21,14 @@ function createGrid() {
 
     while(count <= finalCount){
         let division = document.createElement('div');
-        division.textContent = "div";
+        division.textContent = ".";
         gridArea.appendChild(division);
         count += 1;
         
     }
 }
 
-let gridArea = document.querySelector('.grid-area');
+let gridArea = document.querySelector('.grid-area'); // Container for our div's
+let div = document.querySelector('div');
 
 createGrid();
