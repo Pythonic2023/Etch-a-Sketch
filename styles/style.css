@@ -4,10 +4,6 @@
 }
 
 div {
-    outline: 1px solid red;
+    height: 20px;
     flex: 0 0 50%;
 }
-
-//div:hover {
-//    background-color: orange;
-//}
