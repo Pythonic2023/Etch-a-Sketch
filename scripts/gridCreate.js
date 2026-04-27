@@ -1,3 +1,14 @@
+function mouseOver(){
+    gridArea.addEventListener('mouseup', event => {
+
+    })
+    gridArea.addEventListener('mouseover', event => {
+        event.target.style.backgroundColor = "orange";
+    })
+
+}
+
+// Handle a mouse up event properly so it stops drawing, and starts listening for mouse down's.
 
 function createGrid() {
     const finalCount = 255;
@@ -9,14 +20,15 @@ function createGrid() {
         count += 1;
     }
 
-    gridArea.addEventListener('mouseover', event => {
+    gridArea.addEventListener('mousedown', event => {
         if(event.target.tagName === 'DIV'){
-            event.target.style.backgroundColor = 'orange';
-            console.log('entered div');
+            mouseOver();
         }
     });
 
 }
+
+
 
 let gridArea = document.querySelector('.grid-area'); // Container for our div's
 
