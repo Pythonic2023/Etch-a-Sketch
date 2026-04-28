@@ -13,7 +13,7 @@ function createGrid() {
 
 }
 
-
+const preventDrag = document.addEventListener('dragstart', event => event.preventDefault()); // Prevent dragging of colored blocks
 
 let gridArea = document.querySelector('.grid-area'); // Container for our div's
 
@@ -37,8 +37,5 @@ function stopColor(event){
     gridArea.removeEventListener('mouseover', handleMouseOver);
     gridArea.removeEventListener('mouseup', stopColor)
 }
-
-
-
 
 createGrid();
