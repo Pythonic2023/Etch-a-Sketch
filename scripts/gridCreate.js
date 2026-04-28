@@ -1,13 +1,3 @@
-function mouseOver(){
-    gridArea.addEventListener('mouseup', event => {
-
-    })
-    gridArea.addEventListener('mouseover', event => {
-        event.target.style.backgroundColor = "orange";
-    })
-
-}
-
 // Handle a mouse up event properly so it stops drawing, and starts listening for mouse down's.
 
 function createGrid() {
@@ -20,16 +10,35 @@ function createGrid() {
         count += 1;
     }
 
-    gridArea.addEventListener('mousedown', event => {
-        if(event.target.tagName === 'DIV'){
-            mouseOver();
-        }
-    });
 
 }
 
 
 
 let gridArea = document.querySelector('.grid-area'); // Container for our div's
+
+gridArea.addEventListener('mousedown', startColor);
+
+function startColor(event){
+    event.target.style.backgroundColor = 'orange';
+    keepColor();
+}
+
+function keepColor(event){
+    gridArea.addEventListener('mouseover', handleMouseOver);
+    gridArea.addEventListener('mouseup', stopColor);
+}
+
+function handleMouseOver(event){
+    event.target.style.backgroundColor = 'orange';
+}
+
+function stopColor(event){
+    gridArea.removeEventListener('mouseover', handleMouseOver);
+    gridArea.removeEventListener('mouseup', stopColor)
+}
+
+
+
 
 createGrid();
