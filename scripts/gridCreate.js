@@ -1,7 +1,15 @@
-// Handle a mouse up event properly so it stops drawing, and starts listening for mouse down's.
+let gridSizePrompt = document.querySelector('.grid-size-prompt');
+gridSizePrompt.addEventListener('click', removeGrid);
+
+function removeGrid(event){
+    const divisionToRemove = document.querySelectorAll('div');
+    let remove = divisionToRemove.forEach(item => {
+        gridArea.removeChild(item);
+    })
+}
 
 function createGrid() {
-    const finalCount = 255;
+    let finalCount = 255;
     let count = 0;
 
     while(count <= finalCount){
@@ -16,7 +24,6 @@ function createGrid() {
 const preventDrag = document.addEventListener('dragstart', event => event.preventDefault()); // Prevent dragging of colored blocks
 
 let gridArea = document.querySelector('.grid-area'); // Container for our div's
-
 gridArea.addEventListener('mousedown', startColor);
 
 function startColor(event){
