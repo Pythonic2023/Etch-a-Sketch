@@ -1,7 +1,7 @@
 .grid-area {
     display: flex;
     flex-wrap: wrap;
-    outline: 1px solid red;
+    outline: 1px solid black;
     width: 900px;
     height: 500px;
 }

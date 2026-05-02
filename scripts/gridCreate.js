@@ -1,6 +1,42 @@
 let gridSizePrompt = document.querySelector('.grid-size-prompt');
 gridSizePrompt.addEventListener('click', removeGrid);
 
+const randomButton = document.querySelector('.random-color');
+randomButton.addEventListener('click', randomColor);
+
+const normalColor = document.querySelector('.normal-color');
+normalColor.addEventListener('click', normalColorEnable);
+
+let enableRandomColor = false;
+
+function normalColorEnable(){
+    enableRandomColor = false;
+}
+
+function randomColor(){
+    enableRandomColor = true;
+}
+
+// Probably the least efficient way to do this, but it's not AI generated atleast. 
+function rgbGenerate(){
+    let count = 0;
+    let rgbValues = [];
+    let rgbString = '';
+    let rgbMaximum = 2.5;
+    let rgbMinimum = 1;
+    let regexDecimal = /\./;
+    while(count <= 2){
+        rgbNumber = Math.random() * (rgbMaximum - rgbMinimum) + rgbMinimum;
+        let rgbNumberString = String(rgbNumber);
+        rgbNumberString = rgbNumberString.slice(0, 4);
+        replaceDecimalString = rgbNumberString.replace(regexDecimal, '');
+        rgbValues.push(replaceDecimalString);
+        rgbString = rgbValues.join(" ");
+        count += 1;
+    }
+    return rgbString;
+}
+
 function removeGrid(event){
     let number = Number(prompt("Number: "));
     const divisionToRemove = document.querySelectorAll('div');
@@ -41,12 +77,19 @@ function createGrid(number) {
 
 const preventDrag = document.addEventListener('dragstart', event => event.preventDefault()); // Prevent dragging of colored blocks
 
-let gridArea = document.querySelector('.grid-area'); // Container for our div's
+let gridArea = document.querySelector('.grid-area');
 gridArea.addEventListener('mousedown', startColor);
 
 function startColor(event){
-    event.target.style.backgroundColor = 'orange';
-    keepColor();
+    if(enableRandomColor === true){
+        let color = rgbGenerate();
+        event.target.style.backgroundColor = `rgb(${color})`;
+        keepColor();
+
+    }else {
+        event.target.style.backgroundColor = 'orange';
+        keepColor();
+    }
 }
 
 function keepColor(event){
@@ -55,7 +98,13 @@ function keepColor(event){
 }
 
 function handleMouseOver(event){
-    event.target.style.backgroundColor = 'orange';
+    if(enableRandomColor === true){
+        let color = rgbGenerate();
+        event.target.style.backgroundColor = `rgb(${color})`;
+    } else {
+        event.target.style.backgroundColor = 'orange';
+    }
+
 }
 
 function stopColor(event){
